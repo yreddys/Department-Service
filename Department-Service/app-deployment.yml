@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: DepartmentService-deployment
+  name: departmentservice-deployment
 spec:
   selector:
     matchLabels:
-      app: DepartmentService-mysql
+      app: departmentservice-mysql
   replicas: 3
   template:
     metadata:
       labels:
-        app: DepartmentService-mysql
+        app: departmentservice-mysql
     spec:
       containers:
-        - name: DepartmentService-k8s
-          image: yreddys211/DepartmentService-k8s:1.0
+        - name: departmentservice-k8s
+          image: yreddys211/departmentservice-k8s:1.0
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
@@ -32,10 +32,10 @@ spec:
 apiVersion: v1 # Kubernetes API version
 kind: Service # Kubernetes resource kind we are creating
 metadata: # Metadata of the resource kind we are creating
-  name: DepartmentService-svc
+  name: departmentservice-svc
 spec:
   selector:
-    app:DepartmentService-mysql
+    app:departmentservice-mysql
   ports:
     - protocol: "TCP"
       port: 8080 # The port that the service is running on in the cluster
